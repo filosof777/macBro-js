@@ -35,22 +35,57 @@
         </div>
         <div class="main__col col-6 pt-5 form">
           <h2 class="main__title mb-1"><b>MacBook Air 13-inch</b></h2>
-          <h3 class="main__price-text">M1/
-            <span class="main__ram"></span>/
-            <span class="main__memory"></span>/
-            <span class="main__color"></span>
+          <h3 class="main__price-text">M1/<span class="main__ram">8</span>/<span class="main__memory">256</span>/<span class="main__color">Gold</span>
           </h3>
           <form class="form__content" action="#">
             <div class="form__ram">
-              <p class="text-site">ram</p>
+              <p class="text-site">Ram</p>
               <label for="ram-8gb">
-                <input class="form__radio-btn" id="ram-8gb" type="radio" name="ram" value="8" checked>
+                <input class="form__radio-btn ram" id="ram-8gb" type="radio" name="ram" value="8" checked>
                 <span class="ram__span">8GB</span>
               </label>
               <label for="ram-16gb">
-                <input class="form__radio-btn" id="ram-16gb" type="radio" name="ram" value="16">
+                <input class="form__radio-btn ram" id="ram-16gb" type="radio" name="ram" value="16">
                 <span class="ram__span">16GB</span>
               </label>
+            </div>
+            <div class="form__memory">
+              <p class="text-site">Memory</p>
+              <label for="memory-256gb">
+                <input class="form__radio-btn memory" id="memory-256gb" type="radio" name="memory" value="256" checked>
+                <span class="ram__span">256GB</span>
+              </label>
+              <label for="memory-512gb">
+                <input class="form__radio-btn memory" id="memory-512gb" type="radio" name="memory" value="512">
+                <span class="ram__span">512GB</span>
+              </label>
+              <label for="memory-1tb">
+                <input class="form__radio-btn memory" id="memory-1tb" type="radio" name="memory" value="1">
+                <span class="ram__span">1TB</span>
+              </label>
+            </div>
+            <div class="form__color">
+              <p class="text-site">Color</p>
+              <label for="color-gold">
+                <input class="form__radio-btn color" id="color-gold" type="radio" name="color" value="gold" checked>
+                <span class="ram__span color__span"><span class="color__gold"></span>Gold</span>
+              </label>
+              <label for="color-silver">
+                <input class="form__radio-btn color" id="color-silver" type="radio" name="color" value="silver">
+                <span class="ram__span color__span"><span class="color__silver"></span>Silver</span>
+              </label>
+              <label for="color-gray">
+                <input class="form__radio-btn color" id="color-gray" type="radio" name="color" value="gray">
+                <span class="ram__span color__span"><span class="color__gray"></span>Gray</span>
+              </label>
+            </div>
+            <div class="range-price mb-3">
+              <input class="minus" type="text" disabled value="-">
+              <input class="count" type="text" name="price" disabled value="1">
+              <input class="plus" type="text" disabled value="+">
+            </div>
+            <div class="d-flex">
+              <h3 class="price">11550000</h3><h3 class="sum"><span>so'm</span></h3>
             </div>
           </form>
         </div>
