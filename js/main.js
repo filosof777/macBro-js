@@ -134,28 +134,42 @@ let elPrice = document.querySelector('.price');
 
 // console.log(summ);
 
-elRangePrice.addEventListener('click', (e) => {
-  let elPorductCount = document.querySelector('.count');
-  if (e.target.value == '+') {
+let str = elPrice.textContent
+// console.log(str);
 
-    let summ = elPrice.textContent.split('');
-    summ = summ.join('');
-    summ = +summ;
-    console.log(summ);
-    let minSum = 11550000;
-    console.log(minSum);
+let str2 = '';
+
+for (let i = str.length; i >= 0; i--) {
+  str2 += str[i];
+  console.log(str[i]);
+  // console.log(str[i]);
+  // str2[i] = str[i].pop()
+  // console.log(str[i]);
+}
+// console.log(str.length);
+console.log(str2);
+
+elRangePrice.addEventListener('click', (e) => {
+  let summ = elPrice.textContent.split('');
+  summ = summ.join('');
+  summ = +summ;
+  // console.log();
+  let elPorductCount = document.querySelector('.count');
+  let minSum = 11550000;
+  if (e.target.value == '+') {
 
     elPrice.textContent = '';
     elPrice.textContent += summ + minSum;
     // elPrice.textContent = ''
 
-    console.log(elPrice.textContent.length);
     productCount++;
     elPorductCount.value = productCount;
 
   } else if (e.target.value == '-' && elPorductCount.value > 1) {
     productCount--;
     elPorductCount.value = productCount;
+    elPrice.textContent = '';
+    elPrice.textContent += summ - minSum;
   }
 })
 
