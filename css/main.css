@@ -506,6 +506,16 @@ img {
   margin-bottom: 20px;
 }
 
+.form__memory {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+}
+
 .form__radio-btn {
   display: none;
 }
@@ -600,6 +610,7 @@ input[type=radio]:checked + span {
   width: 100%;
   background-color: transparent;
   border: none;
+  outline: none;
 }
 
 input[value] {

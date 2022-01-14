@@ -1,50 +1,17 @@
 let elProductContentList = document.querySelector('.product__content-list');
 let elProductList = document.querySelector('.product__list');
+
 let sum = 0;
 
-
-// elImage.forEach(item => {
-  
-// })
-
-// macBook.gold.forEach(item => {
-//   let count = 0;
-//   elProductContentList.innerHTML = `
-//     <li class="product__content-item">
-//       <img class="product__big-image" id="product__img" src="${item}" alt="img">
-//     </li>
-//     `
-// })
 let count = 0;
-macBook.gold.forEach(item => {
-
-})
-
-
-// elItemProduct.forEach(item => {
-//   item.addEventListener('click', () => {
-//     elItemProduct.forEach(items => {
-//       items.classList.remove('product__item--active')
-//     })
-//     item.classList.add('product__item--active')
-//   })
-// })
-
-// elItemProduct.forEach(item => {
-//   item.addEventListener('click', (e) => {
-//     let imgLink = e.target.querySelector('img');
-//     document.querySelector('#product__img').src = imgLink.src
-//   })
-// })
-
 
 let elList = document.querySelector('.product__content-list');
 let width = 500;
 
-
-
 function removeClass(elItemProduct){
-  for(let item of elItemProduct)item.classList.remove('product__item--active')
+  elItemProduct.forEach(item => {
+    item.classList.remove('product__item--active')
+  })
 }
 
 function createImage(color){
@@ -53,7 +20,7 @@ function createImage(color){
   elList.style.transform = `translate(${0}px)`;
   count = 0;
   sum = 0;
-  for(let item of macBook[color]){
+  macBook[color].forEach(item => {
     elList.innerHTML += `
     <li class="product__content-item">
       <img class="product__big-image" id="product__img" src="${item}" alt="img">
@@ -78,7 +45,7 @@ function createImage(color){
       </li>
       `
     }
-  }
+  })
   slider();
 }
 
@@ -95,15 +62,15 @@ elColorProduct.forEach(item => {
 function slider(){
   let elItemProduct = document.querySelectorAll('.product__item');
 
-  for(let item of elItemProduct){
+  elItemProduct.forEach(item => {
     item.addEventListener('click',()=>{
       removeClass(elItemProduct);
       item.classList.add('product__item--active');
       elList.style.transform = `translate(${width - item.value * width}px)`;
     })
-  }
-  
+  })
 }
+
 function changeActive(arr, cls) {
   arr.forEach(item => {
     item.addEventListener('change', () => {
@@ -113,63 +80,96 @@ function changeActive(arr, cls) {
   })
 }
 
+let elFormRam = document.querySelector('.form__ram');
+let elMaxMemory = document.querySelector('.memory-label');
+
+elMaxMemory.innerHTML = '';
+
+elFormRam.addEventListener('change', (e) => {
+  
+  if (e.target.value == 8) {
+    ram = 8
+    memory = 512
+    changePrice(memory, ram)
+    elMaxMemory.innerHTML = '';
+    // showPrice1150000)
+  } else if (e.target.value == 16) {
+    ram = 16
+    memory = 1
+    changePrice(memory, ram)
+    // showPrc(000000)
+    elMaxMemory.innerHTML = `
+      <input class="form__radio-btn memory" id="memory-1tb" type="radio" name="memory" value="1">
+      <span class="ram__span">1TB</span>
+    `
+  }
+})
+
 changeActive(document.querySelectorAll('.ram'), document.querySelector('.main__ram'))
 changeActive(document.querySelectorAll('.memory'), document.querySelector('.main__memory'))
 changeActive(document.querySelectorAll('.color'), document.querySelector('.main__color'))
 
+function showPrice() {
 
-let elForm = document.querySelector('.form__content');
+  let elRangePrice = document.querySelector('.range-price');
+  let productCount = 1;
+  let elPrice = document.querySelector('.price');
 
-elForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-})
+  elRangePrice.addEventListener('click', (e) => {
+    let summ = elPrice.textContent.split('');
+    summ = summ.join('');
+    summ = +summ;
+    // console.log();
+    let elPorductCount = document.querySelector('.count');
+    let minSum = summ;
+    if (e.target.value == '+') {
 
-let elRangePrice = document.querySelector('.range-price');
-let productCount = 1;
-let elPrice = document.querySelector('.price');
-// let sumVal = elPrice.textContent.replace(/ /g, "");
-// sumVal = Number(sumVal)
-// console.log(sumVal);
+      productCount++;
+      elPorductCount.value = productCount;
+      elPrice.textContent = ''
+      elPrice.textContent += +oldSumVal * productCount;
 
-
-// console.log(summ);
-
-let str = elPrice.textContent
-// console.log(str);
-
-let str2 = '';
-
-for (let i = str.length; i >= 0; i--) {
-  str2 += str[i];
-  console.log(str[i]);
-  // console.log(str[i]);
-  // str2[i] = str[i].pop()
-  // console.log(str[i]);
+    } else if (e.target.value == '-' && elPorductCount.value > 1) {
+      productCount--;
+      elPorductCount.value = productCount;
+      elPrice.textContent = '';
+      elPrice.textContent = +elPrice.textContent - +oldSumVal;
+    }
+  })
 }
-// console.log(str.length);
-console.log(str2);
 
-elRangePrice.addEventListener('click', (e) => {
-  let summ = elPrice.textContent.split('');
-  summ = summ.join('');
-  summ = +summ;
-  // console.log();
-  let elPorductCount = document.querySelector('.count');
-  let minSum = 11550000;
-  if (e.target.value == '+') {
+showPrice()
 
-    elPrice.textContent = '';
-    elPrice.textContent += summ + minSum;
-    // elPrice.textContent = ''
+let memory = 256;
+let memoryRam = 8;
+let sumVal = '';
 
-    productCount++;
-    elPorductCount.value = productCount;
+let elPrice = document.querySelector('.price');
 
-  } else if (e.target.value == '-' && elPorductCount.value > 1) {
-    productCount--;
-    elPorductCount.value = productCount;
-    elPrice.textContent = '';
-    elPrice.textContent += summ - minSum;
+let oldSumVal = '11400000';
+let sumCount = +elPrice.textContent;
+changePrice(256,8)
+
+function changePrice(mem,ram){
+  sumCount = 1;
+  elPrice.textContent = 1;
+  if(ram == 8 && mem == 256){
+      oldSumVal = '11550000';
+      elPrice.textContent = oldSumVal;
+  }else if(ram == 8 && mem == 512){
+      oldSumVal = '14190000';
+      elPrice.textContent = oldSumVal;
+  }else if(ram == 16 && mem == 256){
+      oldSumVal = '16280000';
+      elPrice.textContent = oldSumVal;
+  }else if(ram == 16 && mem == 512){
+      oldSumVal = '18150000';
+      elPrice.textContent = oldSumVal;
+  }else if(ram == 16 && mem == 1){
+      oldSumVal = '21450000';
+      elPrice.textContent = oldSumVal;
   }
-})
+  sumVal = oldSumVal.replace(/ /g, "");
+}
 
+changePrice(256, 8)
